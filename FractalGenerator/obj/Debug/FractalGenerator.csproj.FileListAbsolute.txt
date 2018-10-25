@@ -1,9 +1,0 @@
-C:\Users\tomek\source\repos\FractalGenerator\FractalGenerator\bin\Debug\FractalGenerator.exe.config
-C:\Users\tomek\source\repos\FractalGenerator\FractalGenerator\bin\Debug\FractalGenerator.exe
-C:\Users\tomek\source\repos\FractalGenerator\FractalGenerator\bin\Debug\FractalGenerator.pdb
-C:\Users\tomek\source\repos\FractalGenerator\FractalGenerator\obj\Debug\FractalGenerator.Properties.Resources.resources
-C:\Users\tomek\source\repos\FractalGenerator\FractalGenerator\obj\Debug\FractalGenerator.csproj.GenerateResource.cache
-C:\Users\tomek\source\repos\FractalGenerator\FractalGenerator\obj\Debug\FractalGenerator.csproj.CoreCompileInputs.cache
-C:\Users\tomek\source\repos\FractalGenerator\FractalGenerator\obj\Debug\FractalGenerator.exe
-C:\Users\tomek\source\repos\FractalGenerator\FractalGenerator\obj\Debug\FractalGenerator.pdb
-C:\Users\tomek\source\repos\FractalGenerator\FractalGenerator\obj\Debug\FractalGenerator.MainWindow.resources
