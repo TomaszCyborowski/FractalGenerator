@@ -1,30 +1,32 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
-namespace FractalGenerator.Julia
+namespace FractalGenerator.MultiJulia
 {
-    public sealed class JuliaFractal : AbstractFractal
+    public sealed class MultiJuliaFractal : AbstractFractal
     {
-        private readonly JuliaParametersControl parametersControl;
+        private readonly MultiJuliaParametersControl parametersControl;
                 
         private int maxIterations = 100;
         private double calculateFromX = -2;
         private double calculateToX = 2;
         private double calculateFromY = -1.5;
         private double calculateToY = 1;
-        private double cx = -0.70176;
-        private double cy = -0.3842;
+        private double n = 6;
+        private double cx = 0.626;
+        private double cy = 0;
         private double stepX;
         private double stepY;
                 
-        public override string FractalDisplayName { get => "Julia"; }
+        public override string FractalDisplayName { get => "Multi Julia"; }
         public override bool SupportsZoom { get => true; }
 
-        public JuliaFractal(PixelCalculatedCallback pixelCalculatedCallback, DrawingPanelCallback drawingPanelCallback)
+        public MultiJuliaFractal(PixelCalculatedCallback pixelCalculatedCallback, DrawingPanelCallback drawingPanelCallback)
         {
             this.pixelCalculatedCallback = pixelCalculatedCallback;
             this.drawingPanelCallback = drawingPanelCallback;
 
-            this.parametersControl = new JuliaParametersControl();
+            this.parametersControl = new MultiJuliaParametersControl();
             this.UpdateParametersInControl();
         }
 
@@ -74,6 +76,7 @@ namespace FractalGenerator.Julia
             this.calculateToY = this.parametersControl.EndY;
             this.cx = this.parametersControl.CX;
             this.cy = this.parametersControl.CY;
+            this.n = this.parametersControl.N;
         }
 
         protected override void UpdateParametersInControl()
@@ -85,6 +88,7 @@ namespace FractalGenerator.Julia
             this.parametersControl.EndY = this.calculateToY;
             this.parametersControl.CX = this.cx;
             this.parametersControl.CY = this.cy;
+            this.parametersControl.N = this.n;
         }
         
         private void CalculateStepValues()
@@ -104,11 +108,10 @@ namespace FractalGenerator.Julia
             
             while (maxIterations > iteration)
             {
-
-                var xtemp = zx * zx - zy * zy;
-                zy = 2 * zx * zy + cy;
-                zx = xtemp + cx;
-                                             
+                double xtmp = Math.Pow((zx * zx + zy * zy),(n / 2)) * Math.Cos(n * Math.Atan2(zy, zx)) + cx;
+                zy = Math.Pow((zx * zx + zy * zy), (n / 2)) * Math.Sin(n * Math.Atan2(zy, zx)) + cy;
+                zx = xtmp;
+                                                             
                 if (zx * zx + zy * zy >= stopValue)
                 {
                     var color = GetColor(iteration, maxIterations);

@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace FractalGenerator
+namespace FractalGenerator.Mandelbrot
 {
     public sealed class MandelbrotFractal : AbstractFractal
     {

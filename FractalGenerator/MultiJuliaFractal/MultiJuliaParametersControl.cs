@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
 
-namespace FractalGenerator.Julia
+namespace FractalGenerator.MultiJulia
 {
-    public partial class JuliaParametersControl : ParametersControl
+    public partial class MultiJuliaParametersControl : ParametersControl
     {
-        public JuliaParametersControl()
+        public MultiJuliaParametersControl()
         {
             InitializeComponent();
             this.cbxExampleParameters.SelectedIndex = 0;
@@ -99,12 +99,26 @@ namespace FractalGenerator.Julia
             }
         }
 
+        public double N
+        {
+            get
+            {
+                return Double.Parse(this.txtN.Text);
+            }
+
+            set
+            {
+                this.txtN.Text = value.ToString();
+            }
+        }
+
         private void exampleParameters_SelectedIndexChanged(object sender, EventArgs e)
         {
             var parameters = ((string)this.cbxExampleParameters.SelectedItem).Split(';');
 
-            CX = Double.Parse(parameters[0], CultureInfo.InvariantCulture);
-            CY = Double.Parse(parameters[1], CultureInfo.InvariantCulture);
+            N = int.Parse(parameters[0], CultureInfo.InvariantCulture);
+            CX = Double.Parse(parameters[1], CultureInfo.InvariantCulture);
+            CY = Double.Parse(parameters[2], CultureInfo.InvariantCulture);
         }
     }
 }

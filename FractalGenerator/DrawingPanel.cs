@@ -75,5 +75,10 @@ namespace FractalGenerator
         {
             return mousePoint;
         }
+
+        public Bitmap GetBitmap()
+        {
+            return bitmap;
+        }
     }
 }

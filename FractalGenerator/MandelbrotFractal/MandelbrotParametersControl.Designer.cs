@@ -1,4 +1,4 @@
-﻿namespace FractalGenerator
+﻿namespace FractalGenerator.Mandelbrot
 {
     partial class MandelbrotParametersControl
     {

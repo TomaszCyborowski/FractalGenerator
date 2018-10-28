@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.btnStart = new System.Windows.Forms.Button();
-            this.drawingPanel = new System.Windows.Forms.Panel();
-            this.numericStopValue = new System.Windows.Forms.NumericUpDown();
-            this.lblStopValue = new System.Windows.Forms.Label();
-            this.bgxParameters = new System.Windows.Forms.GroupBox();
+            this.gbxParameters = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericStopValue)).BeginInit();
-            this.bgxParameters.SuspendLayout();
+            this.cbxFractals = new System.Windows.Forms.ComboBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.drawingPanel = new FractalGenerator.DrawingPanel();
+            this.paramsControl = new FractalGenerator.ParametersControl();
+            this.gbxParameters.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStart
             // 
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.Location = new System.Drawing.Point(900, 749);
+            this.btnStart.Location = new System.Drawing.Point(903, 708);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(311, 51);
             this.btnStart.TabIndex = 1;
@@ -49,55 +49,21 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStartClick);
             // 
-            // drawingPanel
+            // gbxParameters
             // 
-            this.drawingPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.drawingPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.drawingPanel.Location = new System.Drawing.Point(12, 12);
-            this.drawingPanel.Name = "drawingPanel";
-            this.drawingPanel.Size = new System.Drawing.Size(863, 866);
-            this.drawingPanel.TabIndex = 2;
-            // 
-            // numericStopValue
-            // 
-            this.numericStopValue.DecimalPlaces = 2;
-            this.numericStopValue.Location = new System.Drawing.Point(176, 30);
-            this.numericStopValue.Name = "numericStopValue";
-            this.numericStopValue.Size = new System.Drawing.Size(120, 26);
-            this.numericStopValue.TabIndex = 3;
-            this.numericStopValue.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // lblStopValue
-            // 
-            this.lblStopValue.AutoSize = true;
-            this.lblStopValue.Location = new System.Drawing.Point(16, 36);
-            this.lblStopValue.Name = "lblStopValue";
-            this.lblStopValue.Size = new System.Drawing.Size(88, 20);
-            this.lblStopValue.TabIndex = 4;
-            this.lblStopValue.Text = "Stop value:";
-            // 
-            // bgxParameters
-            // 
-            this.bgxParameters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bgxParameters.Controls.Add(this.lblStopValue);
-            this.bgxParameters.Controls.Add(this.numericStopValue);
-            this.bgxParameters.Location = new System.Drawing.Point(900, 12);
-            this.bgxParameters.Name = "bgxParameters";
-            this.bgxParameters.Size = new System.Drawing.Size(311, 718);
-            this.bgxParameters.TabIndex = 5;
-            this.bgxParameters.TabStop = false;
-            this.bgxParameters.Text = "Parameters";
+            this.gbxParameters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxParameters.Controls.Add(this.paramsControl);
+            this.gbxParameters.Location = new System.Drawing.Point(900, 54);
+            this.gbxParameters.Name = "gbxParameters";
+            this.gbxParameters.Size = new System.Drawing.Size(311, 648);
+            this.gbxParameters.TabIndex = 5;
+            this.gbxParameters.TabStop = false;
+            this.gbxParameters.Text = "Parameters";
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(900, 807);
+            this.btnCancel.Location = new System.Drawing.Point(903, 765);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(311, 53);
             this.btnCancel.TabIndex = 6;
@@ -105,32 +71,75 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // cbxFractals
+            // 
+            this.cbxFractals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxFractals.FormattingEnabled = true;
+            this.cbxFractals.Location = new System.Drawing.Point(903, 13);
+            this.cbxFractals.Name = "cbxFractals";
+            this.cbxFractals.Size = new System.Drawing.Size(311, 28);
+            this.cbxFractals.TabIndex = 7;
+            this.cbxFractals.SelectedIndexChanged += new System.EventHandler(this.cbxFractals_SelectedIndexChanged);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(903, 825);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(311, 53);
+            this.btnSave.TabIndex = 9;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // drawingPanel
+            // 
+            this.drawingPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.drawingPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.drawingPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.drawingPanel.Location = new System.Drawing.Point(12, 12);
+            this.drawingPanel.Name = "drawingPanel";
+            this.drawingPanel.Size = new System.Drawing.Size(873, 865);
+            this.drawingPanel.TabIndex = 8;
+            this.drawingPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.drawingPanel_MouseUp);
+            // 
+            // paramsControl
+            // 
+            this.paramsControl.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.paramsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paramsControl.Location = new System.Drawing.Point(3, 22);
+            this.paramsControl.Name = "paramsControl";
+            this.paramsControl.Size = new System.Drawing.Size(305, 623);
+            this.paramsControl.TabIndex = 0;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1223, 889);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.bgxParameters);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.drawingPanel);
+            this.Controls.Add(this.cbxFractals);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.gbxParameters);
             this.Controls.Add(this.btnStart);
             this.MinimumSize = new System.Drawing.Size(1245, 945);
             this.Name = "MainWindow";
             this.Text = "Fractal generator";
-            ((System.ComponentModel.ISupportInitialize)(this.numericStopValue)).EndInit();
-            this.bgxParameters.ResumeLayout(false);
-            this.bgxParameters.PerformLayout();
+            this.gbxParameters.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Panel drawingPanel;
-        private System.Windows.Forms.NumericUpDown numericStopValue;
-        private System.Windows.Forms.Label lblStopValue;
-        private System.Windows.Forms.GroupBox bgxParameters;
+        private System.Windows.Forms.GroupBox gbxParameters;
         private System.Windows.Forms.Button btnCancel;
+        private ParametersControl paramsControl;
+        private System.Windows.Forms.ComboBox cbxFractals;
+        private DrawingPanel drawingPanel;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 

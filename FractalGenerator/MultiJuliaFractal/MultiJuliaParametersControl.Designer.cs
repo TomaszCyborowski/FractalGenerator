@@ -1,6 +1,6 @@
-﻿namespace FractalGenerator.Julia
+﻿namespace FractalGenerator.MultiJulia
 {
-    partial class JuliaParametersControl
+    partial class MultiJuliaParametersControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -43,6 +43,8 @@
             this.txtCY = new System.Windows.Forms.TextBox();
             this.lblCY = new System.Windows.Forms.Label();
             this.cbxExampleParameters = new System.Windows.Forms.ComboBox();
+            this.txtN = new System.Windows.Forms.TextBox();
+            this.lblN = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericMaxIterations)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,25 +178,40 @@
             // 
             this.cbxExampleParameters.FormattingEnabled = true;
             this.cbxExampleParameters.Items.AddRange(new object[] {
-            "-0.70176;-0.3842",
-            "0.285;+0",
-            "0.285;+0.01",
-            "0.45;+0.1428",
-            "-0.835;-0.2321",
-            "-0.8;+0.156 ",
-            "-0.7269;+0.1889",
-            "0;-0.8",
-            "-1;0"});
+            "2;0.279;0",
+            "3;0.4;0",
+            "4;0.484;0",
+            "5;0.544;0",
+            "6;0.59;0",
+            "7;0.626;0"});
             this.cbxExampleParameters.Location = new System.Drawing.Point(18, 262);
             this.cbxExampleParameters.Name = "cbxExampleParameters";
             this.cbxExampleParameters.Size = new System.Drawing.Size(261, 28);
             this.cbxExampleParameters.TabIndex = 28;
             this.cbxExampleParameters.SelectedIndexChanged += new System.EventHandler(this.exampleParameters_SelectedIndexChanged);
             // 
-            // JuliaParametersControl
+            // txtN
+            // 
+            this.txtN.Location = new System.Drawing.Point(129, 296);
+            this.txtN.Name = "txtN";
+            this.txtN.Size = new System.Drawing.Size(150, 26);
+            this.txtN.TabIndex = 30;
+            // 
+            // lblN
+            // 
+            this.lblN.AutoSize = true;
+            this.lblN.Location = new System.Drawing.Point(14, 298);
+            this.lblN.Name = "lblN";
+            this.lblN.Size = new System.Drawing.Size(22, 20);
+            this.lblN.TabIndex = 29;
+            this.lblN.Text = "n:";
+            // 
+            // MultiJuliaParametersControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtN);
+            this.Controls.Add(this.lblN);
             this.Controls.Add(this.cbxExampleParameters);
             this.Controls.Add(this.txtCY);
             this.Controls.Add(this.lblCY);
@@ -210,7 +227,7 @@
             this.Controls.Add(this.lblStartFromX);
             this.Controls.Add(this.lblMaxIterations);
             this.Controls.Add(this.numericMaxIterations);
-            this.Name = "JuliaParametersControl";
+            this.Name = "MultiJuliaParametersControl";
             this.Size = new System.Drawing.Size(293, 386);
             ((System.ComponentModel.ISupportInitialize)(this.numericMaxIterations)).EndInit();
             this.ResumeLayout(false);
@@ -234,5 +251,7 @@
         private System.Windows.Forms.TextBox txtCY;
         private System.Windows.Forms.Label lblCY;
         private System.Windows.Forms.ComboBox cbxExampleParameters;
+        private System.Windows.Forms.TextBox txtN;
+        private System.Windows.Forms.Label lblN;
     }
 }
