@@ -1,2 +1,2 @@
 # FractalGenerator
-Just playing withn git and old code
+Just playing with git and old code
