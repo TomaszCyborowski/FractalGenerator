@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Threading.Tasks;
 
 namespace FractalGenerator.Mandelbrot
 {
@@ -31,17 +33,20 @@ namespace FractalGenerator.Mandelbrot
             GetParametersFromControl();
             this.CalculateStepValues();
             this.StartUpdatedDrawingPanelTimer();
-           
-            for (int pixelXposition = 0; pixelXposition < drawingControlWidth; pixelXposition++)
-                for (int pixelYposition = 0; pixelYposition < drawingControlHeight; pixelYposition++)
+            this.CalculateImage();
+            this.StopUpdateDrawingPanelTimer();
+            this.drawingPanelCallback();
+        }
+
+        private void CalculateImage()
+        {
+            for (int pixelXposition = 1; pixelXposition <= drawingControlWidth; pixelXposition++)
+                for (int pixelYposition = 1; pixelYposition <= drawingControlHeight; pixelYposition++)
                 {
                     double currentX = calculateFromX + (stepX * (double)pixelXposition);
                     double currentY = calculateFromY + (stepY * (double)pixelYposition);
                     CalculatePixelValue(currentX, currentY, pixelXposition, pixelYposition);
                 }
-
-            this.StopUpdateDrawingPanelTimer();
-            this.drawingPanelCallback();
         }
 
         public override ParametersControl GetParametersControl()

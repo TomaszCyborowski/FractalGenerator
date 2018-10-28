@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using FractalGenerator.Julia;
 using FractalGenerator.MultiJulia;
 using FractalGenerator.Mandelbrot;
+using FractalGenerator.MultiThreadedMandelbrot;
 using System.Drawing.Imaging;
 
 namespace FractalGenerator
@@ -24,6 +25,7 @@ namespace FractalGenerator
         private bool selectionChanged;
         private Point mouseDownPoint;
         private Point mouseUpPoint;
+        private object lockObject = new object();
 
         public MainWindow()
         {
@@ -31,14 +33,18 @@ namespace FractalGenerator
             this.fractals.Add(new MandelbrotFractal(OnPixelCalculated, OnUpdateDrawingPanel));
             this.fractals.Add(new JuliaFractal(OnPixelCalculated, OnUpdateDrawingPanel));
             this.fractals.Add(new MultiJuliaFractal(OnPixelCalculated, OnUpdateDrawingPanel));
+            this.fractals.Add(new MultiThreadedMandelbrotFractal(OnPixelCalculated, OnUpdateDrawingPanel));
             this.cbxFractals.DataSource = this.fractals;
             this.cbxFractals.DisplayMember = "FractalDisplayName";
         }
 
         private void OnPixelCalculated(int x, int y, Color color)
         {
-            Brush brush = new SolidBrush(color);            
-            graphics.FillRectangle(brush, x, y, 1, 1);
+            Brush brush = new SolidBrush(color);
+            lock (lockObject)
+            {
+                graphics.FillRectangle(brush, x, y, 1, 1);
+            }
         }
 
         private void OnUpdateDrawingPanel()
@@ -56,6 +62,7 @@ namespace FractalGenerator
             graphics = this.drawingPanel.GetGraphics();            
             fractalThread?.Abort();            
             selectedFractal.SetResolution(this.drawingPanel.Height, this.drawingPanel.Width);
+
             if (selectionChanged)
             {
                 selectedFractal.SetSelectionToZoomIn(mouseDownPoint.X, mouseDownPoint.Y, mouseUpPoint.X, mouseUpPoint.Y);
@@ -129,10 +136,7 @@ namespace FractalGenerator
 
 
 // TODO       
-// refaktoryzacja
-
 // zoom out
 // kolorowania rózne metody do wyboru            
-// liczenie na kilku wątkach            
-// var test = Environment.ProcessorCount;
-// hilber, trojkat siempinskiego
+// hilbert, trojkat siempinskiego
+// task cancelation

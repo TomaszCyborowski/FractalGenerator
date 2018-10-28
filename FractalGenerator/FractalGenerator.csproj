@@ -75,6 +75,13 @@
       <DependentUpon>MultiJuliaParametersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MultiJuliaFractal\MultiJuliaFractal.cs" />
+    <Compile Include="MultiThreadedmandelbrotFractal\MultiThreadedMandelbrotFractal.cs" />
+    <Compile Include="MultiThreadedmandelbrotFractal\MandelbrotParametersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MultiThreadedmandelbrotFractal\MandelbrotParametersControl.Designer.cs">
+      <DependentUpon>MandelbrotParametersControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ParametersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MultiJuliaFractal\MultiJuliaParametersControl.resx">
       <DependentUpon>MultiJuliaParametersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiThreadedmandelbrotFractal\MandelbrotParametersControl.resx">
+      <DependentUpon>MandelbrotParametersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ParametersControl.resx">
       <DependentUpon>ParametersControl.cs</DependentUpon>

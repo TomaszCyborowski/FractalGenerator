@@ -30,11 +30,11 @@
         {
             this.btnStart = new System.Windows.Forms.Button();
             this.gbxParameters = new System.Windows.Forms.GroupBox();
+            this.paramsControl = new FractalGenerator.ParametersControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.cbxFractals = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.drawingPanel = new FractalGenerator.DrawingPanel();
-            this.paramsControl = new FractalGenerator.ParametersControl();
             this.gbxParameters.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +60,15 @@
             this.gbxParameters.TabStop = false;
             this.gbxParameters.Text = "Parameters";
             // 
+            // paramsControl
+            // 
+            this.paramsControl.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.paramsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paramsControl.Location = new System.Drawing.Point(3, 22);
+            this.paramsControl.Name = "paramsControl";
+            this.paramsControl.Size = new System.Drawing.Size(305, 623);
+            this.paramsControl.TabIndex = 0;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -83,6 +92,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Location = new System.Drawing.Point(903, 825);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(311, 53);
@@ -103,15 +113,6 @@
             this.drawingPanel.Size = new System.Drawing.Size(873, 865);
             this.drawingPanel.TabIndex = 8;
             this.drawingPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.drawingPanel_MouseUp);
-            // 
-            // paramsControl
-            // 
-            this.paramsControl.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.paramsControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.paramsControl.Location = new System.Drawing.Point(3, 22);
-            this.paramsControl.Name = "paramsControl";
-            this.paramsControl.Size = new System.Drawing.Size(305, 623);
-            this.paramsControl.TabIndex = 0;
             // 
             // MainWindow
             // 

@@ -35,7 +35,13 @@ namespace FractalGenerator.MultiJulia
             GetParametersFromControl();
             this.CalculateStepValues();
             this.StartUpdatedDrawingPanelTimer();
+            this.CalculateImage();
+            this.StopUpdateDrawingPanelTimer();
+            this.drawingPanelCallback();
+        }
 
+        private void CalculateImage()
+        {
             for (int pixelXposition = 0; pixelXposition < drawingControlWidth; pixelXposition++)
                 for (int pixelYposition = 0; pixelYposition < drawingControlHeight; pixelYposition++)
                 {
@@ -43,9 +49,6 @@ namespace FractalGenerator.MultiJulia
                     double currentY = calculateFromY + (stepY * (double)pixelYposition);
                     CalculatePixelValue(currentX, currentY, pixelXposition, pixelYposition);
                 }
-
-            this.StopUpdateDrawingPanelTimer();
-            this.drawingPanelCallback();
         }
 
         public override ParametersControl GetParametersControl()

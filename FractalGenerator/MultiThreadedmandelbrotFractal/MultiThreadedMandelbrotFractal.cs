@@ -1,30 +1,30 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Threading.Tasks;
 
-namespace FractalGenerator.Julia
+namespace FractalGenerator.MultiThreadedMandelbrot
 {
-    public sealed class JuliaFractal : AbstractFractal
+    public sealed class MultiThreadedMandelbrotFractal : AbstractFractal
     {
-        private readonly JuliaParametersControl parametersControl;
-                
+        private readonly MandelbrotParametersControl parametersControl;
+        
         private int maxIterations = 100;
         private double calculateFromX = -2;
-        private double calculateToX = 2;
+        private double calculateToX = 1;
         private double calculateFromY = -1.5;
         private double calculateToY = 1;
-        private double cx = -0.70176;
-        private double cy = -0.3842;
         private double stepX;
         private double stepY;
                 
-        public override string FractalDisplayName { get => "Julia"; }
+        public override string FractalDisplayName { get => "Mandelbort multithreaded"; }
         public override bool SupportsZoom { get => true; }
 
-        public JuliaFractal(PixelCalculatedCallback pixelCalculatedCallback, DrawingPanelCallback drawingPanelCallback)
+        public MultiThreadedMandelbrotFractal(PixelCalculatedCallback pixelCalculatedCallback, DrawingPanelCallback drawingPanelCallback)
         {
             this.pixelCalculatedCallback = pixelCalculatedCallback;
             this.drawingPanelCallback = drawingPanelCallback;
 
-            this.parametersControl = new JuliaParametersControl();
+            this.parametersControl = new MandelbrotParametersControl();
             this.UpdateParametersInControl();
         }
 
@@ -40,8 +40,36 @@ namespace FractalGenerator.Julia
 
         private void CalculateImage()
         {
-            for (int pixelXposition = 0; pixelXposition < drawingControlWidth; pixelXposition++)
-                for (int pixelYposition = 0; pixelYposition < drawingControlHeight; pixelYposition++)
+            var numberOfProcessors = Environment.ProcessorCount;
+
+            var pixelOffest = drawingControlWidth / numberOfProcessors;
+            var startPixel = 1;
+            var endPixel = pixelOffest;
+
+            Task[] taskArray = new Task[numberOfProcessors];
+            for (int i = 0; i < numberOfProcessors; i++)
+            {
+                if (i == numberOfProcessors - 1)
+                {
+                    endPixel = drawingControlWidth;
+                }
+
+                var startPixelTaskValue = startPixel;
+                var endPixelTaskValue = endPixel;
+                taskArray[i] = Task.Factory.StartNew(() => { CalculateImagePart(startPixelTaskValue, endPixelTaskValue); });
+
+                startPixel += pixelOffest;
+                endPixel = startPixel + pixelOffest;
+
+            }
+
+            Task.WaitAll(taskArray);
+        }
+
+        private void CalculateImagePart(int x, int x2)
+        {
+            for (int pixelXposition = x; pixelXposition <= x2; pixelXposition++)
+                for (int pixelYposition = 0; pixelYposition <= drawingControlHeight; pixelYposition++)
                 {
                     double currentX = calculateFromX + (stepX * (double)pixelXposition);
                     double currentY = calculateFromY + (stepY * (double)pixelYposition);
@@ -75,8 +103,6 @@ namespace FractalGenerator.Julia
             this.calculateFromY = this.parametersControl.StartFromY;
             this.calculateToX = this.parametersControl.EndX;
             this.calculateToY = this.parametersControl.EndY;
-            this.cx = this.parametersControl.CX;
-            this.cy = this.parametersControl.CY;
         }
 
         protected override void UpdateParametersInControl()
@@ -86,8 +112,6 @@ namespace FractalGenerator.Julia
             this.parametersControl.StartFromY = this.calculateFromY;
             this.parametersControl.EndX = this.calculateToX;
             this.parametersControl.EndY = this.calculateToY;
-            this.parametersControl.CX = this.cx;
-            this.parametersControl.CY = this.cy;
         }
         
         private void CalculateStepValues()
@@ -99,20 +123,21 @@ namespace FractalGenerator.Julia
         
         private void CalculatePixelValue(double a, double b, int pixelXposition, int pixelYposition)
         {
-            const double stopValue = 4;       
+            const double stopValue = 2;
+            double realPart = 0;
+            double imaginaryPart = 0;
+            double previousRealPart;
+            double previosuImaginaryPart;
             int iteration = 0;
 
-            var zx = a;
-            var zy = b;
-            
             while (maxIterations > iteration)
             {
-
-                var xtemp = zx * zx - zy * zy;
-                zy = 2 * zx * zy + cy;
-                zx = xtemp + cx;
-                                             
-                if (zx * zx + zy * zy >= stopValue)
+                previousRealPart = realPart;
+                previosuImaginaryPart = imaginaryPart;
+                realPart = ((previousRealPart * previousRealPart) - (previosuImaginaryPart * previosuImaginaryPart)) + a;
+                imaginaryPart = (2 * previousRealPart * previosuImaginaryPart) + b;
+                                
+                if ((realPart * realPart) + (imaginaryPart * imaginaryPart) >= stopValue)
                 {
                     var color = GetColor(iteration, maxIterations);
                     this.pixelCalculatedCallback(pixelXposition, pixelYposition, color);
@@ -139,9 +164,7 @@ namespace FractalGenerator.Julia
             {
                 valueType = iteration;
             }
-            return Color.FromArgb(255 - valueType, 255 - valueType, 255 - valueType);
-            
-            //return Color.FromArgb(255, 255, 255);
-        }       
+            return Color.FromArgb(255 - valueType, 255 - valueType, 255 - valueType);            
+        }
     }
 }
