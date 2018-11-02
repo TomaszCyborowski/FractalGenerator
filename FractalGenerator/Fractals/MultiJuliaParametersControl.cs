@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace FractalGenerator.MultiJulia
+namespace FractalGenerator.Fractals
 {
     public partial class MultiJuliaParametersControl : ParametersControl
     {

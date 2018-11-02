@@ -34,8 +34,12 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.cbxFractals = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.cbxVisualizators = new System.Windows.Forms.ComboBox();
+            this.gbxVisualizatorParameters = new System.Windows.Forms.GroupBox();
+            this.visualizatorParametersControl = new FractalGenerator.VisualizatorParametersControl();
             this.drawingPanel = new FractalGenerator.DrawingPanel();
             this.gbxParameters.SuspendLayout();
+            this.gbxVisualizatorParameters.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStart
@@ -51,11 +55,12 @@
             // 
             // gbxParameters
             // 
-            this.gbxParameters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxParameters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxParameters.Controls.Add(this.paramsControl);
             this.gbxParameters.Location = new System.Drawing.Point(900, 54);
             this.gbxParameters.Name = "gbxParameters";
-            this.gbxParameters.Size = new System.Drawing.Size(311, 648);
+            this.gbxParameters.Size = new System.Drawing.Size(311, 428);
             this.gbxParameters.TabIndex = 5;
             this.gbxParameters.TabStop = false;
             this.gbxParameters.Text = "Parameters";
@@ -66,7 +71,7 @@
             this.paramsControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramsControl.Location = new System.Drawing.Point(3, 22);
             this.paramsControl.Name = "paramsControl";
-            this.paramsControl.Size = new System.Drawing.Size(305, 623);
+            this.paramsControl.Size = new System.Drawing.Size(305, 403);
             this.paramsControl.TabIndex = 0;
             // 
             // btnCancel
@@ -101,6 +106,36 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // cbxVisualizators
+            // 
+            this.cbxVisualizators.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxVisualizators.FormattingEnabled = true;
+            this.cbxVisualizators.Location = new System.Drawing.Point(903, 489);
+            this.cbxVisualizators.Name = "cbxVisualizators";
+            this.cbxVisualizators.Size = new System.Drawing.Size(308, 28);
+            this.cbxVisualizators.TabIndex = 10;
+            this.cbxVisualizators.SelectedIndexChanged += new System.EventHandler(this.cbxVisualizators_SelectedIndexChanged);
+            // 
+            // gbxVisualizatorParameters
+            // 
+            this.gbxVisualizatorParameters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxVisualizatorParameters.Controls.Add(this.visualizatorParametersControl);
+            this.gbxVisualizatorParameters.Location = new System.Drawing.Point(900, 524);
+            this.gbxVisualizatorParameters.Name = "gbxVisualizatorParameters";
+            this.gbxVisualizatorParameters.Size = new System.Drawing.Size(314, 178);
+            this.gbxVisualizatorParameters.TabIndex = 11;
+            this.gbxVisualizatorParameters.TabStop = false;
+            this.gbxVisualizatorParameters.Text = "Visualizator parameters";
+            // 
+            // visualizatorParametersControl
+            // 
+            this.visualizatorParametersControl.BackColor = System.Drawing.Color.Lime;
+            this.visualizatorParametersControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.visualizatorParametersControl.Location = new System.Drawing.Point(3, 22);
+            this.visualizatorParametersControl.Name = "visualizatorParametersControl";
+            this.visualizatorParametersControl.Size = new System.Drawing.Size(308, 153);
+            this.visualizatorParametersControl.TabIndex = 0;
+            // 
             // drawingPanel
             // 
             this.drawingPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -112,6 +147,7 @@
             this.drawingPanel.Name = "drawingPanel";
             this.drawingPanel.Size = new System.Drawing.Size(873, 865);
             this.drawingPanel.TabIndex = 8;
+            this.drawingPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.drawingPanel_MouseDown);
             this.drawingPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.drawingPanel_MouseUp);
             // 
             // MainWindow
@@ -119,6 +155,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1223, 889);
+            this.Controls.Add(this.gbxVisualizatorParameters);
+            this.Controls.Add(this.cbxVisualizators);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.drawingPanel);
             this.Controls.Add(this.cbxFractals);
@@ -129,6 +167,7 @@
             this.Name = "MainWindow";
             this.Text = "Fractal generator";
             this.gbxParameters.ResumeLayout(false);
+            this.gbxVisualizatorParameters.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -141,6 +180,9 @@
         private System.Windows.Forms.ComboBox cbxFractals;
         private DrawingPanel drawingPanel;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ComboBox cbxVisualizators;
+        private System.Windows.Forms.GroupBox gbxVisualizatorParameters;
+        private VisualizatorParametersControl visualizatorParametersControl;
     }
 }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FractalGenerator.Mandelbrot
+namespace FractalGenerator.Fractals
 {
     public partial class MandelbrotParametersControl : ParametersControl
     {

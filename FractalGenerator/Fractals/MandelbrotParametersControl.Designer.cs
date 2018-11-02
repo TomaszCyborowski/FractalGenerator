@@ -1,4 +1,4 @@
-﻿namespace FractalGenerator.Mandelbrot
+﻿namespace FractalGenerator.Fractals
 {
     partial class MandelbrotParametersControl
     {
@@ -63,7 +63,7 @@
             // 
             this.numericMaxIterations.Location = new System.Drawing.Point(129, 13);
             this.numericMaxIterations.Maximum = new decimal(new int[] {
-            10000,
+            1000000,
             0,
             0,
             0});

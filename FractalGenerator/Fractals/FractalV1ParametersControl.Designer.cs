@@ -1,6 +1,6 @@
-﻿namespace FractalGenerator.MultiThreadedMandelbrot
+﻿namespace FractalGenerator.Fractals
 {
-    partial class MandelbrotParametersControl
+    partial class FractalV1ParametersControl
     {
         /// <summary> 
         /// Required designer variable.

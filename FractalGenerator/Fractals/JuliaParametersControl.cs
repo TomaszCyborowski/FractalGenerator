@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Globalization;
 
-namespace FractalGenerator.MultiThreadedMandelbrot
+namespace FractalGenerator.Fractals
 {
-    public partial class MandelbrotParametersControl : ParametersControl
+    public partial class JuliaParametersControl : ParametersControl
     {
-        public MandelbrotParametersControl()
+        public JuliaParametersControl()
         {
             InitializeComponent();
+            this.cbxExampleParameters.SelectedIndex = 0;
         }
 
         public int MaxIterations
@@ -69,6 +71,40 @@ namespace FractalGenerator.MultiThreadedMandelbrot
             {
                 this.txtEndY.Text = value.ToString();
             }
-        }        
+        }
+
+        public double CX
+        {
+            get
+            {
+                return Double.Parse(this.txtCX.Text);
+            }
+
+            set
+            {
+                this.txtCX.Text = value.ToString();
+            }
+        }
+
+        public double CY
+        {
+            get
+            {
+                return Double.Parse(this.txtCY.Text);
+            }
+
+            set
+            {
+                this.txtCY.Text = value.ToString();
+            }
+        }
+
+        private void exampleParameters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var parameters = ((string)this.cbxExampleParameters.SelectedItem).Split(';');
+
+            CX = Double.Parse(parameters[0], CultureInfo.InvariantCulture);
+            CY = Double.Parse(parameters[1], CultureInfo.InvariantCulture);
+        }
     }
 }

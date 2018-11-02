@@ -1,4 +1,4 @@
-﻿namespace FractalGenerator.Julia
+﻿namespace FractalGenerator.Fractals
 {
     partial class JuliaParametersControl
     {

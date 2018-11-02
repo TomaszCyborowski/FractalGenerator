@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,19 +47,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractFractal.cs" />
+    <Compile Include="Fractals\AbstractFractal.cs" />
+    <Compile Include="Fractals\MagnetFractal3.cs" />
+    <Compile Include="Fractals\MagnetFractal2.cs" />
+    <Compile Include="Fractals\FractalV3.cs" />
+    <Compile Include="Fractals\FractalV2.cs" />
+    <Compile Include="Visualisators\SmoothVisualizator.cs" />
+    <Compile Include="Visualisators\HistogramVisualizator.cs" />
+    <Compile Include="Visualisators\TwoColorsWithReturnVisualizator.cs" />
+    <Compile Include="Visualisators\TwoColorsVisualizator.cs" />
+    <Compile Include="Visualisators\BlackAndWhiteVisualizator.cs" />
+    <Compile Include="Visualisators\IVisualizator.cs" />
+    <Compile Include="Visualisators\AbstractVisualizator.cs" />
+    <Compile Include="VisualizatorParametersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VisualizatorParametersControl.Designer.cs">
+      <DependentUpon>VisualizatorParametersControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DrawingPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DrawingPanel.Designer.cs">
       <DependentUpon>DrawingPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="IFractal.cs" />
-    <Compile Include="JuliaFractal\JuliaFractal.cs" />
-    <Compile Include="JuliaFractal\JuliaParametersControl.cs">
+    <Compile Include="Fractals\FractalV1ParametersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="JuliaFractal\JuliaParametersControl.Designer.cs">
+    <Compile Include="Fractals\FractalV1ParametersControl.Designer.cs">
+      <DependentUpon>FractalV1ParametersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fractals\FractalV1.cs" />
+    <Compile Include="Fractals\IFractal.cs" />
+    <Compile Include="Fractals\JuliaFractal.cs" />
+    <Compile Include="Fractals\JuliaParametersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fractals\JuliaParametersControl.Designer.cs">
       <DependentUpon>JuliaParametersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
@@ -67,19 +92,18 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="MandelbrotFractal\MandelbrotFractal.cs" />
-    <Compile Include="MultiJuliaFractal\MultiJuliaParametersControl.cs">
+    <Compile Include="Fractals\MultiJuliaParametersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MultiJuliaFractal\MultiJuliaParametersControl.Designer.cs">
+    <Compile Include="Fractals\MultiJuliaParametersControl.Designer.cs">
       <DependentUpon>MultiJuliaParametersControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MultiJuliaFractal\MultiJuliaFractal.cs" />
-    <Compile Include="MultiThreadedmandelbrotFractal\MultiThreadedMandelbrotFractal.cs" />
-    <Compile Include="MultiThreadedmandelbrotFractal\MandelbrotParametersControl.cs">
+    <Compile Include="Fractals\MultiJuliaFractal.cs" />
+    <Compile Include="Fractals\MandelbrotFractal.cs" />
+    <Compile Include="Fractals\MandelbrotParametersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MultiThreadedmandelbrotFractal\MandelbrotParametersControl.Designer.cs">
+    <Compile Include="Fractals\MandelbrotParametersControl.Designer.cs">
       <DependentUpon>MandelbrotParametersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ParametersControl.cs">
@@ -90,22 +114,22 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MandelbrotFractal\MandelbrotParametersControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MandelbrotFractal\MandelbrotParametersControl.Designer.cs">
-      <DependentUpon>MandelbrotParametersControl.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="JuliaFractal\JuliaParametersControl.resx">
+    <EmbeddedResource Include="VisualizatorParametersControl.resx">
+      <DependentUpon>VisualizatorParametersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fractals\FractalV1ParametersControl.resx">
+      <DependentUpon>FractalV1ParametersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fractals\JuliaParametersControl.resx">
       <DependentUpon>JuliaParametersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MultiJuliaFractal\MultiJuliaParametersControl.resx">
+    <EmbeddedResource Include="Fractals\MultiJuliaParametersControl.resx">
       <DependentUpon>MultiJuliaParametersControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MultiThreadedmandelbrotFractal\MandelbrotParametersControl.resx">
+    <EmbeddedResource Include="Fractals\MandelbrotParametersControl.resx">
       <DependentUpon>MandelbrotParametersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ParametersControl.resx">
@@ -120,9 +144,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MandelbrotFractal\MandelbrotParametersControl.resx">
-      <DependentUpon>MandelbrotParametersControl.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -136,5 +157,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
