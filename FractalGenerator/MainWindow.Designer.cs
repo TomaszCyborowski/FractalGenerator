@@ -45,9 +45,9 @@
             // btnStart
             // 
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.Location = new System.Drawing.Point(903, 708);
+            this.btnStart.Location = new System.Drawing.Point(903, 775);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(311, 51);
+            this.btnStart.Size = new System.Drawing.Size(311, 29);
             this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -77,9 +77,9 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(903, 765);
+            this.btnCancel.Location = new System.Drawing.Point(903, 810);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(311, 53);
+            this.btnCancel.Size = new System.Drawing.Size(311, 31);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -98,9 +98,9 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(903, 825);
+            this.btnSave.Location = new System.Drawing.Point(903, 847);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(311, 53);
+            this.btnSave.Size = new System.Drawing.Size(311, 31);
             this.btnSave.TabIndex = 9;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
             this.gbxVisualizatorParameters.Controls.Add(this.visualizatorParametersControl);
             this.gbxVisualizatorParameters.Location = new System.Drawing.Point(900, 524);
             this.gbxVisualizatorParameters.Name = "gbxVisualizatorParameters";
-            this.gbxVisualizatorParameters.Size = new System.Drawing.Size(314, 178);
+            this.gbxVisualizatorParameters.Size = new System.Drawing.Size(314, 238);
             this.gbxVisualizatorParameters.TabIndex = 11;
             this.gbxVisualizatorParameters.TabStop = false;
             this.gbxVisualizatorParameters.Text = "Visualizator parameters";
@@ -133,7 +133,7 @@
             this.visualizatorParametersControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.visualizatorParametersControl.Location = new System.Drawing.Point(3, 22);
             this.visualizatorParametersControl.Name = "visualizatorParametersControl";
-            this.visualizatorParametersControl.Size = new System.Drawing.Size(308, 153);
+            this.visualizatorParametersControl.Size = new System.Drawing.Size(308, 213);
             this.visualizatorParametersControl.TabIndex = 0;
             // 
             // drawingPanel

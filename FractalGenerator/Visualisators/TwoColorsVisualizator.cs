@@ -8,7 +8,8 @@ namespace FractalGenerator.Visualisators
     {        
         public override string VisualizatorDisplayName => "Two colors";
         public override bool RequiersSecondPass => false;
-        public override VisualizatorParametersControl ParametersControl { get; }
+
+        private TwoColorsVisualizatorParametersControl parametersControl;
 
         private Color backColor = Color.FromArgb(0, 0, 0);
         private Color firstColor = Color.FromArgb(35, 100, 206);
@@ -16,10 +17,11 @@ namespace FractalGenerator.Visualisators
 
         public TwoColorsVisualizator(PixelCalculatedCallback pixelCalculatedCallback, DrawingPanelCallback drawingPanelCallback)
         {
-                this.pixelCalculatedCallback = pixelCalculatedCallback;
-                this.drawingPanelCallback = drawingPanelCallback;
+            this.pixelCalculatedCallback = pixelCalculatedCallback;
+            this.drawingPanelCallback = drawingPanelCallback;
 
-                this.ParametersControl = new VisualizatorParametersControl();             
+            this.parametersControl = new TwoColorsVisualizatorParametersControl();
+            this.UpdateParametersInControl();
         }
 
         public override void PixelDidNotReachedStopValue(int pixelXposition, int pixelYposition, int iteration, int maxIterations, Complex z)
@@ -45,10 +47,30 @@ namespace FractalGenerator.Visualisators
 
         public override void FractalGenerationStarted(int maxIterations)
         {
+            this.GetParametersFromControl();
             updatedrawingPanelTimer = new System.Timers.Timer();
             updatedrawingPanelTimer.Elapsed += new ElapsedEventHandler(OnUpdatedDrawingPanelTimedEvent);
             updatedrawingPanelTimer.Interval = 100;
             updatedrawingPanelTimer.Enabled = true;
+        }
+
+        protected override void GetParametersFromControl()
+        {
+            this.backColor = this.parametersControl.FractalBackColor;
+            this.firstColor = this.parametersControl.FractalFirstColor;
+            this.secondColor = this.parametersControl.FractalSecondColor;            
+        }
+
+        protected override void UpdateParametersInControl()
+        {
+            this.parametersControl.FractalBackColor = this.backColor;
+            this.parametersControl.FractalFirstColor = this.firstColor;
+            this.parametersControl.FractalSecondColor = this.secondColor;            
+        }
+
+        public override VisualizatorParametersControl GetParametersControl()
+        {
+            return this.parametersControl;
         }
     }
 }

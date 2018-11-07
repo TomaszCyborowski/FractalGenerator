@@ -9,7 +9,7 @@ namespace FractalGenerator.Visualisators
     {
         public override string VisualizatorDisplayName => "Histogram - two colors";
         public override bool RequiersSecondPass => true;
-        public override VisualizatorParametersControl ParametersControl { get; }
+        private TwoColorsVisualizatorParametersControl parametersControl;
 
         private int[] histogram; 
         private int[,] image;
@@ -23,7 +23,8 @@ namespace FractalGenerator.Visualisators
             this.pixelCalculatedCallback = pixelCalculatedCallback;
             this.drawingPanelCallback = drawingPanelCallback;
 
-            this.ParametersControl = new VisualizatorParametersControl();
+            this.parametersControl = new TwoColorsVisualizatorParametersControl();
+            this.UpdateParametersInControl();
         }
 
         public override void FractalGenerationEnded()
@@ -35,6 +36,7 @@ namespace FractalGenerator.Visualisators
 
         public override void FractalGenerationStarted(int maxIterations)
         {
+            this.GetParametersFromControl();
             this.maxIterations = maxIterations;
             histogram = new int[maxIterations];
             image = new int[drawingControlWidth+1, drawingControlHeight+1];
@@ -94,6 +96,25 @@ namespace FractalGenerator.Visualisators
                         this.pixelCalculatedCallback(pixelXposition, pixelYposition, result);
                     }
                 }
-        }        
+        }
+
+        public override VisualizatorParametersControl GetParametersControl()
+        {
+            return this.parametersControl;
+        }
+
+        protected override void GetParametersFromControl()
+        {
+            this.backColor = this.parametersControl.FractalBackColor;
+            this.firstColor = this.parametersControl.FractalFirstColor;
+            this.secondColor = this.parametersControl.FractalSecondColor;
+        }
+
+        protected override void UpdateParametersInControl()
+        {
+            this.parametersControl.FractalBackColor = this.backColor;
+            this.parametersControl.FractalFirstColor = this.firstColor;
+            this.parametersControl.FractalSecondColor = this.secondColor;
+        }
     }
 }

@@ -178,7 +178,7 @@ namespace FractalGenerator
             {
                 this.gbxVisualizatorParameters.SuspendLayout();
                 this.gbxVisualizatorParameters.Controls.Remove(this.visualizatorParametersControl);
-                this.visualizatorParametersControl = selectedVisualizator.ParametersControl;
+                this.visualizatorParametersControl = selectedVisualizator.GetParametersControl();
                 this.visualizatorParametersControl.Dock = DockStyle.Fill;
                 this.gbxVisualizatorParameters.Controls.Add(this.visualizatorParametersControl);
                 this.gbxVisualizatorParameters.ResumeLayout();

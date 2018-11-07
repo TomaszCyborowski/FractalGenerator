@@ -54,6 +54,18 @@
     <Compile Include="Fractals\FractalV2.cs" />
     <Compile Include="Visualisators\SmoothVisualizator.cs" />
     <Compile Include="Visualisators\HistogramVisualizator.cs" />
+    <Compile Include="Visualisators\TwoColorsWithReturnVisualizatorParametersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visualisators\TwoColorsWithReturnVisualizatorParametersControl.Designer.cs">
+      <DependentUpon>TwoColorsWithReturnVisualizatorParametersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visualisators\TwoColorsVisualizatorParametersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visualisators\TwoColorsVisualizatorParametersControl.Designer.cs">
+      <DependentUpon>TwoColorsVisualizatorParametersControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visualisators\TwoColorsWithReturnVisualizator.cs" />
     <Compile Include="Visualisators\TwoColorsVisualizator.cs" />
     <Compile Include="Visualisators\BlackAndWhiteVisualizator.cs" />
@@ -114,6 +126,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Visualisators\TwoColorsWithReturnVisualizatorParametersControl.resx">
+      <DependentUpon>TwoColorsWithReturnVisualizatorParametersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visualisators\TwoColorsVisualizatorParametersControl.resx">
+      <DependentUpon>TwoColorsVisualizatorParametersControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VisualizatorParametersControl.resx">
       <DependentUpon>VisualizatorParametersControl.cs</DependentUpon>
     </EmbeddedResource>

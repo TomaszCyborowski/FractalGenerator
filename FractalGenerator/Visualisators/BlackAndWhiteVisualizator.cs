@@ -8,7 +8,7 @@ namespace FractalGenerator.Visualisators
     {        
         public override string VisualizatorDisplayName => "Black and White";
         public override bool RequiersSecondPass => false;
-        public override VisualizatorParametersControl ParametersControl { get; }
+        private VisualizatorParametersControl parametersControl;
                
         private Color firstColor = Color.FromArgb(0, 0, 0);
         private Color secondColor = Color.FromArgb(255, 255, 255);
@@ -18,7 +18,7 @@ namespace FractalGenerator.Visualisators
                 this.pixelCalculatedCallback = pixelCalculatedCallback;
                 this.drawingPanelCallback = drawingPanelCallback;
 
-                this.ParametersControl = new VisualizatorParametersControl();             
+                this.parametersControl = new VisualizatorParametersControl();             
         }
 
         public override void PixelDidNotReachedStopValue(int pixelXposition, int pixelYposition, int iteration, int maxIterations, Complex z)
@@ -43,6 +43,21 @@ namespace FractalGenerator.Visualisators
             updatedrawingPanelTimer.Elapsed += new ElapsedEventHandler(OnUpdatedDrawingPanelTimedEvent);
             updatedrawingPanelTimer.Interval = 100;
             updatedrawingPanelTimer.Enabled = true;
+        }
+
+        public override VisualizatorParametersControl GetParametersControl()
+        {
+            return this.parametersControl;
+        }
+
+        protected override void GetParametersFromControl()
+        {
+            ;
+        }
+
+        protected override void UpdateParametersInControl()
+        {
+            ;
         }
     }
 }
