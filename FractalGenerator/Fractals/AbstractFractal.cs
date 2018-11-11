@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using FractalGenerator.Visualisators;
 
 namespace FractalGenerator
@@ -34,11 +35,22 @@ namespace FractalGenerator
 
         public void GenerateFractal()
         {
-            GetParametersFromControl();
-            this.CalculateStepValues();
-            this.Visualizator.FractalGenerationStarted(this.maxIterations);
-            this.CalculateImage();
-            this.Visualizator.FractalGenerationEnded();
+            try
+            {
+                this.GetParametersFromControl();
+                this.CalculateStepValues();
+                this.Visualizator.FractalGenerationStarted(this.maxIterations);
+                this.CalculateImage();
+                this.Visualizator.FractalGenerationEnded();
+            }
+            catch (ThreadAbortException)
+            {
+                ;
+            }
+            catch (FormatException exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
 
         private void CalculateImage()
@@ -77,7 +89,7 @@ namespace FractalGenerator
             }
             finally
             {
-                tokenSource.Dispose();
+                tokenSource?.Dispose();
                 tokenSource = null;
             }
         }

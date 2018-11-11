@@ -28,18 +28,81 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.txtEndY = new System.Windows.Forms.TextBox();
+            this.txtStartFromY = new System.Windows.Forms.TextBox();
+            this.txtEndX = new System.Windows.Forms.TextBox();
+            this.txtStartFromX = new System.Windows.Forms.TextBox();
+            this.lblEndY = new System.Windows.Forms.Label();
+            this.lblStartFromY = new System.Windows.Forms.Label();
+            this.lblEndX = new System.Windows.Forms.Label();
             this.lblStartFromX = new System.Windows.Forms.Label();
             this.lblMaxIterations = new System.Windows.Forms.Label();
             this.numericMaxIterations = new System.Windows.Forms.NumericUpDown();
-            this.lblEndX = new System.Windows.Forms.Label();
-            this.lblStartFromY = new System.Windows.Forms.Label();
-            this.lblEndY = new System.Windows.Forms.Label();
-            this.txtStartFromX = new System.Windows.Forms.TextBox();
-            this.txtEndX = new System.Windows.Forms.TextBox();
-            this.txtStartFromY = new System.Windows.Forms.TextBox();
-            this.txtEndY = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericMaxIterations)).BeginInit();
             this.SuspendLayout();
+            // 
+            // txtEndY
+            // 
+            this.txtEndY.Enabled = false;
+            this.txtEndY.Location = new System.Drawing.Point(129, 145);
+            this.txtEndY.Name = "txtEndY";
+            this.txtEndY.ReadOnly = true;
+            this.txtEndY.Size = new System.Drawing.Size(150, 26);
+            this.txtEndY.TabIndex = 15;
+            // 
+            // txtStartFromY
+            // 
+            this.txtStartFromY.Enabled = false;
+            this.txtStartFromY.Location = new System.Drawing.Point(129, 112);
+            this.txtStartFromY.Name = "txtStartFromY";
+            this.txtStartFromY.ReadOnly = true;
+            this.txtStartFromY.Size = new System.Drawing.Size(150, 26);
+            this.txtStartFromY.TabIndex = 14;
+            // 
+            // txtEndX
+            // 
+            this.txtEndX.Enabled = false;
+            this.txtEndX.Location = new System.Drawing.Point(129, 79);
+            this.txtEndX.Name = "txtEndX";
+            this.txtEndX.ReadOnly = true;
+            this.txtEndX.Size = new System.Drawing.Size(150, 26);
+            this.txtEndX.TabIndex = 13;
+            // 
+            // txtStartFromX
+            // 
+            this.txtStartFromX.Enabled = false;
+            this.txtStartFromX.Location = new System.Drawing.Point(129, 46);
+            this.txtStartFromX.Name = "txtStartFromX";
+            this.txtStartFromX.ReadOnly = true;
+            this.txtStartFromX.Size = new System.Drawing.Size(150, 26);
+            this.txtStartFromX.TabIndex = 12;
+            // 
+            // lblEndY
+            // 
+            this.lblEndY.AutoSize = true;
+            this.lblEndY.Location = new System.Drawing.Point(14, 147);
+            this.lblEndY.Name = "lblEndY";
+            this.lblEndY.Size = new System.Drawing.Size(57, 20);
+            this.lblEndY.TabIndex = 11;
+            this.lblEndY.Text = "End Y:";
+            // 
+            // lblStartFromY
+            // 
+            this.lblStartFromY.AutoSize = true;
+            this.lblStartFromY.Location = new System.Drawing.Point(14, 115);
+            this.lblStartFromY.Name = "lblStartFromY";
+            this.lblStartFromY.Size = new System.Drawing.Size(104, 20);
+            this.lblStartFromY.TabIndex = 10;
+            this.lblStartFromY.Text = "Start From Y:";
+            // 
+            // lblEndX
+            // 
+            this.lblEndX.AutoSize = true;
+            this.lblEndX.Location = new System.Drawing.Point(14, 83);
+            this.lblEndX.Name = "lblEndX";
+            this.lblEndX.Size = new System.Drawing.Size(57, 20);
+            this.lblEndX.TabIndex = 9;
+            this.lblEndX.Text = "End X:";
             // 
             // lblStartFromX
             // 
@@ -67,6 +130,11 @@
             0,
             0,
             0});
+            this.numericMaxIterations.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericMaxIterations.Name = "numericMaxIterations";
             this.numericMaxIterations.Size = new System.Drawing.Size(150, 26);
             this.numericMaxIterations.TabIndex = 6;
@@ -75,65 +143,6 @@
             0,
             0,
             0});
-            // 
-            // lblEndX
-            // 
-            this.lblEndX.AutoSize = true;
-            this.lblEndX.Location = new System.Drawing.Point(14, 83);
-            this.lblEndX.Name = "lblEndX";
-            this.lblEndX.Size = new System.Drawing.Size(57, 20);
-            this.lblEndX.TabIndex = 9;
-            this.lblEndX.Text = "End X:";
-            // 
-            // lblStartFromY
-            // 
-            this.lblStartFromY.AutoSize = true;
-            this.lblStartFromY.Location = new System.Drawing.Point(14, 115);
-            this.lblStartFromY.Name = "lblStartFromY";
-            this.lblStartFromY.Size = new System.Drawing.Size(104, 20);
-            this.lblStartFromY.TabIndex = 10;
-            this.lblStartFromY.Text = "Start From Y:";
-            // 
-            // lblEndY
-            // 
-            this.lblEndY.AutoSize = true;
-            this.lblEndY.Location = new System.Drawing.Point(14, 147);
-            this.lblEndY.Name = "lblEndY";
-            this.lblEndY.Size = new System.Drawing.Size(57, 20);
-            this.lblEndY.TabIndex = 11;
-            this.lblEndY.Text = "End Y:";
-            // 
-            // txtStartFromX
-            // 
-            this.txtStartFromX.Location = new System.Drawing.Point(129, 46);
-            this.txtStartFromX.Name = "txtStartFromX";
-            this.txtStartFromX.ReadOnly = true;
-            this.txtStartFromX.Size = new System.Drawing.Size(150, 26);
-            this.txtStartFromX.TabIndex = 12;
-            // 
-            // txtEndX
-            // 
-            this.txtEndX.Location = new System.Drawing.Point(129, 79);
-            this.txtEndX.Name = "txtEndX";
-            this.txtEndX.ReadOnly = true;
-            this.txtEndX.Size = new System.Drawing.Size(150, 26);
-            this.txtEndX.TabIndex = 13;
-            // 
-            // txtStartFromY
-            // 
-            this.txtStartFromY.Location = new System.Drawing.Point(129, 112);
-            this.txtStartFromY.Name = "txtStartFromY";
-            this.txtStartFromY.ReadOnly = true;
-            this.txtStartFromY.Size = new System.Drawing.Size(150, 26);
-            this.txtStartFromY.TabIndex = 14;
-            // 
-            // txtEndY
-            // 
-            this.txtEndY.Location = new System.Drawing.Point(129, 145);
-            this.txtEndY.Name = "txtEndY";
-            this.txtEndY.ReadOnly = true;
-            this.txtEndY.Size = new System.Drawing.Size(150, 26);
-            this.txtEndY.TabIndex = 15;
             // 
             // MandelbrotParametersControl
             // 

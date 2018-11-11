@@ -49,7 +49,7 @@ namespace FractalGenerator
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 mouseDown = true;
                 mousePoint = mouseDownPoint = e.Location;

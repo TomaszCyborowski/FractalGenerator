@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Numerics;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FractalGenerator.Fractals
 {
@@ -35,7 +36,7 @@ namespace FractalGenerator.Fractals
         {
             return this.parametersControl;
         }
-                        
+
         protected override void GetParametersFromControl()
         {
             this.maxIterations = this.parametersControl.MaxIterations;

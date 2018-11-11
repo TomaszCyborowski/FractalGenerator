@@ -53,9 +53,9 @@ namespace FractalGenerator
         private void OnPixelCalculated(int x, int y, Color color)
         {
             Brush brush = new SolidBrush(color);
-            lock (lockObject)
+            lock (this.lockObject)
             {
-                graphics.FillRectangle(brush, x, y, 1, 1);
+                this.graphics.FillRectangle(brush, x, y, 1, 1);
             }
         }
 
@@ -64,60 +64,80 @@ namespace FractalGenerator
             this.drawingPanel.Invalidate();
         }
 
-        private void btnStartClick(object sender, EventArgs e)
-        {
-            StartFractalGeneration();
-        }
-
         private void StartFractalGeneration()
         {
-            graphics = this.drawingPanel.GetGraphics();
-            selectedFractal.CancelGeneration();
-            fractalThread?.Abort();            
-            selectedFractal.SetImageResolution(this.drawingPanel.Height, this.drawingPanel.Width);
-            selectedVisualizator.SetImageResolution(this.drawingPanel.Height, this.drawingPanel.Width);
-            selectedFractal.Visualizator = selectedVisualizator;
+            this.graphics = this.drawingPanel.GetGraphics();
+            this.CancelFractalGeneration();
+            this.selectedFractal.SetImageResolution(this.drawingPanel.Height, this.drawingPanel.Width);
+            this.selectedVisualizator.SetImageResolution(this.drawingPanel.Height, this.drawingPanel.Width);
+            this.selectedFractal.Visualizator = selectedVisualizator;
 
             if (selectionChanged)
             {
-                var startX = mouseDownPoint.X;
-                var endX = mouseUpPoint.X;
-                var startY = mouseDownPoint.Y;
-                var endY = mouseUpPoint.Y;
-                if (mouseDownPoint.X > mouseUpPoint.X)
-                {
-                    startX = mouseUpPoint.X;
-                    endX = mouseDownPoint.X;
-                }
-
-                if (mouseDownPoint.Y > mouseUpPoint.Y)
-                {
-                    startY = mouseUpPoint.Y;
-                    endY = mouseDownPoint.Y;
-                }
-
-                selectedFractal.SetSelectionToZoomIn(startX, startY, endX, endY);
-                selectionChanged = false;
+                PrepareZoomInParameters();
             }
             else if (zoomOut)
             {
-                selectedFractal.SetSelectionToZoomIn(-this.drawingPanel.Width, -this.drawingPanel.Height, this.drawingPanel.Width+this.drawingPanel.Width, this.drawingPanel.Height+this.drawingPanel.Height);
-                zoomOut = false;
+                PrepareZoomOutParameters();
             }
 
-            fractalThread = new Thread(new ThreadStart(selectedFractal.GenerateFractal));
-            fractalThread.Start();
+            this.fractalThread = new Thread(new ThreadStart(selectedFractal.GenerateFractal));
+            this.fractalThread.Start();
+        }
+
+        private void PrepareZoomOutParameters()
+        {
+            this.selectedFractal.SetSelectionToZoomIn(-this.drawingPanel.Width, -this.drawingPanel.Height, this.drawingPanel.Width + this.drawingPanel.Width, this.drawingPanel.Height + this.drawingPanel.Height);
+            zoomOut = false;
+        }
+
+        private void PrepareZoomInParameters()
+        {
+            var startX = mouseDownPoint.X;
+            var endX = mouseUpPoint.X;
+            var startY = mouseDownPoint.Y;
+            var endY = mouseUpPoint.Y;
+            if (mouseDownPoint.X > mouseUpPoint.X)
+            {
+                startX = mouseUpPoint.X;
+                endX = mouseDownPoint.X;
+            }
+
+            if (mouseDownPoint.Y > mouseUpPoint.Y)
+            {
+                startY = mouseUpPoint.Y;
+                endY = mouseDownPoint.Y;
+            }
+
+            this.selectedFractal.SetSelectionToZoomIn(startX, startY, endX, endY);
+            this.selectionChanged = false;
+        }
+
+        private void CancelFractalGeneration()
+        {
+            this.selectedFractal.CancelGeneration();
+            this.fractalThread?.Abort();
+        }
+        
+        private void btnStartClick(object sender, EventArgs e)
+        {
+            if (this.selectedVisualizator.VisualizatorDisplayName == "Smooth - two colors" && (this.selectedFractal.FractalDisplayName == "Julia" || this.selectedFractal.FractalDisplayName == "Multi Julia"))
+            {
+                MessageBox.Show($"Selected visualizator: {this.selectedVisualizator.VisualizatorDisplayName} is not supported for this fractal: {this.selectedFractal.FractalDisplayName}");
+                return;
+            }
+
+            this.StartFractalGeneration();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            selectedFractal.CancelGeneration();
-            fractalThread?.Abort();
+            this.CancelFractalGeneration();
         }
 
         private void cbxFractals_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedFractal = (IFractal)this.cbxFractals.SelectedItem;
+            this.selectedFractal = (IFractal)this.cbxFractals.SelectedItem;
 
             if (selectedFractal != null)
             {                
@@ -130,20 +150,44 @@ namespace FractalGenerator
             }
         }
 
+        private void cbxVisualizators_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.selectedVisualizator = (IVisualizator)this.cbxVisualizators.SelectedItem;
+
+            if (selectedVisualizator != null)
+            {
+                this.gbxVisualizatorParameters.SuspendLayout();
+                this.gbxVisualizatorParameters.Controls.Remove(this.visualizatorParametersControl);
+                this.visualizatorParametersControl = selectedVisualizator.GetParametersControl();
+                this.visualizatorParametersControl.Dock = DockStyle.Fill;
+                this.gbxVisualizatorParameters.Controls.Add(this.visualizatorParametersControl);
+                this.gbxVisualizatorParameters.ResumeLayout();
+            }
+        }
+
         private void drawingPanel_MouseUp(object sender, MouseEventArgs e)
         {
-            if (this.selectedFractal.SupportsZoom && e.Button == System.Windows.Forms.MouseButtons.Left)
-            {    
-                mouseDownPoint = this.drawingPanel.GetMouseDownPoint();
-                mouseUpPoint = this.drawingPanel.GetMouseUpPoint();
-                selectionChanged = true;
+            if (this.selectedFractal.SupportsZoom && e.Button == MouseButtons.Left)
+            {
+                this.mouseDownPoint = this.drawingPanel.GetMouseDownPoint();
+                this.mouseUpPoint = this.drawingPanel.GetMouseUpPoint();
+                this.selectionChanged = true;
+                this.StartFractalGeneration();
+            }
+        }
+
+        private void drawingPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                zoomOut = true;
                 StartFractalGeneration();
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {            
-            var bitmap = drawingPanel.GetBitmap();
+            var bitmap = this.drawingPanel.GetBitmap();
             if (bitmap == null)
             {
                 MessageBox.Show("No image to save yet.", "Error");
@@ -168,35 +212,7 @@ namespace FractalGenerator
                 }
                 bitmap.Save(dialog.FileName, format);
             }
-        }
-
-        private void cbxVisualizators_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedVisualizator = (IVisualizator)this.cbxVisualizators.SelectedItem;
-
-            if (selectedVisualizator != null)
-            {
-                this.gbxVisualizatorParameters.SuspendLayout();
-                this.gbxVisualizatorParameters.Controls.Remove(this.visualizatorParametersControl);
-                this.visualizatorParametersControl = selectedVisualizator.GetParametersControl();
-                this.visualizatorParametersControl.Dock = DockStyle.Fill;
-                this.gbxVisualizatorParameters.Controls.Add(this.visualizatorParametersControl);
-                this.gbxVisualizatorParameters.ResumeLayout();
-            }
-        }
-
-        private void drawingPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                zoomOut = true;
-                StartFractalGeneration();
-            }
-        }
+        }        
     }
 }
-
-
-// TODO       
-// visualizatory zrobic gui parametrów
-// julia obsluga niedzialajacego visualizatora
+// TODO refactoring

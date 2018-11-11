@@ -31,12 +31,12 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.SuspendLayout();
             // 
-            // ColorControl
+            // VisualizatorParametersControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lime;
-            this.Name = "ColorControl";
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Name = "VisualizatorParametersControl";
             this.Size = new System.Drawing.Size(136, 120);
             this.ResumeLayout(false);
 

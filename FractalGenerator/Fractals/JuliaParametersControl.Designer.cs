@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblMaxIterations = new System.Windows.Forms.Label();
-            this.numericMaxIterations = new System.Windows.Forms.NumericUpDown();
+            this.cbxExampleParameters = new System.Windows.Forms.ComboBox();
+            this.txtCY = new System.Windows.Forms.TextBox();
+            this.lblCY = new System.Windows.Forms.Label();
+            this.txtCX = new System.Windows.Forms.TextBox();
+            this.lblCX = new System.Windows.Forms.Label();
             this.txtEndY = new System.Windows.Forms.TextBox();
             this.txtStartFromY = new System.Windows.Forms.TextBox();
             this.txtEndX = new System.Windows.Forms.TextBox();
@@ -38,42 +41,65 @@
             this.lblStartFromY = new System.Windows.Forms.Label();
             this.lblEndX = new System.Windows.Forms.Label();
             this.lblStartFromX = new System.Windows.Forms.Label();
-            this.txtCX = new System.Windows.Forms.TextBox();
-            this.lblCX = new System.Windows.Forms.Label();
-            this.txtCY = new System.Windows.Forms.TextBox();
-            this.lblCY = new System.Windows.Forms.Label();
-            this.cbxExampleParameters = new System.Windows.Forms.ComboBox();
+            this.lblMaxIterations = new System.Windows.Forms.Label();
+            this.numericMaxIterations = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numericMaxIterations)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblMaxIterations
+            // cbxExampleParameters
             // 
-            this.lblMaxIterations.AutoSize = true;
-            this.lblMaxIterations.Location = new System.Drawing.Point(14, 19);
-            this.lblMaxIterations.Name = "lblMaxIterations";
-            this.lblMaxIterations.Size = new System.Drawing.Size(111, 20);
-            this.lblMaxIterations.TabIndex = 7;
-            this.lblMaxIterations.Text = "Max iterations:";
+            this.cbxExampleParameters.FormattingEnabled = true;
+            this.cbxExampleParameters.Items.AddRange(new object[] {
+            "-0.70176;-0.3842",
+            "0.285;+0",
+            "0.285;+0.01",
+            "0.45;+0.1428",
+            "-0.835;-0.2321",
+            "-0.8;+0.156 ",
+            "-0.7269;+0.1889",
+            "0;-0.8",
+            "-1;0"});
+            this.cbxExampleParameters.Location = new System.Drawing.Point(18, 262);
+            this.cbxExampleParameters.Name = "cbxExampleParameters";
+            this.cbxExampleParameters.Size = new System.Drawing.Size(261, 28);
+            this.cbxExampleParameters.TabIndex = 28;
+            this.cbxExampleParameters.SelectedIndexChanged += new System.EventHandler(this.exampleParameters_SelectedIndexChanged);
             // 
-            // numericMaxIterations
+            // txtCY
             // 
-            this.numericMaxIterations.Location = new System.Drawing.Point(129, 13);
-            this.numericMaxIterations.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numericMaxIterations.Name = "numericMaxIterations";
-            this.numericMaxIterations.Size = new System.Drawing.Size(150, 26);
-            this.numericMaxIterations.TabIndex = 6;
-            this.numericMaxIterations.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
+            this.txtCY.Location = new System.Drawing.Point(129, 228);
+            this.txtCY.Name = "txtCY";
+            this.txtCY.Size = new System.Drawing.Size(150, 26);
+            this.txtCY.TabIndex = 27;
+            // 
+            // lblCY
+            // 
+            this.lblCY.AutoSize = true;
+            this.lblCY.Location = new System.Drawing.Point(14, 230);
+            this.lblCY.Name = "lblCY";
+            this.lblCY.Size = new System.Drawing.Size(28, 20);
+            this.lblCY.TabIndex = 26;
+            this.lblCY.Text = "cy:";
+            // 
+            // txtCX
+            // 
+            this.txtCX.Location = new System.Drawing.Point(129, 196);
+            this.txtCX.Name = "txtCX";
+            this.txtCX.Size = new System.Drawing.Size(150, 26);
+            this.txtCX.TabIndex = 25;
+            // 
+            // lblCX
+            // 
+            this.lblCX.AutoSize = true;
+            this.lblCX.Location = new System.Drawing.Point(14, 198);
+            this.lblCX.Name = "lblCX";
+            this.lblCX.Size = new System.Drawing.Size(28, 20);
+            this.lblCX.TabIndex = 24;
+            this.lblCX.Text = "cx:";
             // 
             // txtEndY
             // 
+            this.txtEndY.Enabled = false;
             this.txtEndY.Location = new System.Drawing.Point(129, 144);
             this.txtEndY.Name = "txtEndY";
             this.txtEndY.ReadOnly = true;
@@ -82,6 +108,7 @@
             // 
             // txtStartFromY
             // 
+            this.txtStartFromY.Enabled = false;
             this.txtStartFromY.Location = new System.Drawing.Point(129, 111);
             this.txtStartFromY.Name = "txtStartFromY";
             this.txtStartFromY.ReadOnly = true;
@@ -90,6 +117,7 @@
             // 
             // txtEndX
             // 
+            this.txtEndX.Enabled = false;
             this.txtEndX.Location = new System.Drawing.Point(129, 78);
             this.txtEndX.Name = "txtEndX";
             this.txtEndX.ReadOnly = true;
@@ -98,6 +126,7 @@
             // 
             // txtStartFromX
             // 
+            this.txtStartFromX.Enabled = false;
             this.txtStartFromX.Location = new System.Drawing.Point(129, 45);
             this.txtStartFromX.Name = "txtStartFromX";
             this.txtStartFromX.ReadOnly = true;
@@ -140,56 +169,36 @@
             this.lblStartFromX.TabIndex = 16;
             this.lblStartFromX.Text = "Start from X:";
             // 
-            // txtCX
+            // lblMaxIterations
             // 
-            this.txtCX.Location = new System.Drawing.Point(129, 196);
-            this.txtCX.Name = "txtCX";
-            this.txtCX.Size = new System.Drawing.Size(150, 26);
-            this.txtCX.TabIndex = 25;
+            this.lblMaxIterations.AutoSize = true;
+            this.lblMaxIterations.Location = new System.Drawing.Point(14, 19);
+            this.lblMaxIterations.Name = "lblMaxIterations";
+            this.lblMaxIterations.Size = new System.Drawing.Size(111, 20);
+            this.lblMaxIterations.TabIndex = 7;
+            this.lblMaxIterations.Text = "Max iterations:";
             // 
-            // lblCX
+            // numericMaxIterations
             // 
-            this.lblCX.AutoSize = true;
-            this.lblCX.Location = new System.Drawing.Point(14, 198);
-            this.lblCX.Name = "lblCX";
-            this.lblCX.Size = new System.Drawing.Size(28, 20);
-            this.lblCX.TabIndex = 24;
-            this.lblCX.Text = "cx:";
-            // 
-            // txtCY
-            // 
-            this.txtCY.Location = new System.Drawing.Point(129, 228);
-            this.txtCY.Name = "txtCY";
-            this.txtCY.Size = new System.Drawing.Size(150, 26);
-            this.txtCY.TabIndex = 27;
-            // 
-            // lblCY
-            // 
-            this.lblCY.AutoSize = true;
-            this.lblCY.Location = new System.Drawing.Point(14, 230);
-            this.lblCY.Name = "lblCY";
-            this.lblCY.Size = new System.Drawing.Size(28, 20);
-            this.lblCY.TabIndex = 26;
-            this.lblCY.Text = "cy:";
-            // 
-            // cbxExampleParameters
-            // 
-            this.cbxExampleParameters.FormattingEnabled = true;
-            this.cbxExampleParameters.Items.AddRange(new object[] {
-            "-0.70176;-0.3842",
-            "0.285;+0",
-            "0.285;+0.01",
-            "0.45;+0.1428",
-            "-0.835;-0.2321",
-            "-0.8;+0.156 ",
-            "-0.7269;+0.1889",
-            "0;-0.8",
-            "-1;0"});
-            this.cbxExampleParameters.Location = new System.Drawing.Point(18, 262);
-            this.cbxExampleParameters.Name = "cbxExampleParameters";
-            this.cbxExampleParameters.Size = new System.Drawing.Size(261, 28);
-            this.cbxExampleParameters.TabIndex = 28;
-            this.cbxExampleParameters.SelectedIndexChanged += new System.EventHandler(this.exampleParameters_SelectedIndexChanged);
+            this.numericMaxIterations.Location = new System.Drawing.Point(129, 13);
+            this.numericMaxIterations.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericMaxIterations.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericMaxIterations.Name = "numericMaxIterations";
+            this.numericMaxIterations.Size = new System.Drawing.Size(150, 26);
+            this.numericMaxIterations.TabIndex = 6;
+            this.numericMaxIterations.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             // 
             // JuliaParametersControl
             // 

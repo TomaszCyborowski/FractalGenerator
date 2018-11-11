@@ -25,7 +25,7 @@ namespace FractalGenerator.Fractals
         {
             return this.parametersControl;
         }
-                        
+
         protected override void GetParametersFromControl()
         {
             this.maxIterations = this.parametersControl.MaxIterations;
